@@ -130,7 +130,7 @@ public extension Navigator {
   /// - Throws: RouteError if the routing fails
   public static func navigate(urn: String, payload: Any? = nil) throws {
     let encodedUrn = PercentEncoder.encode(string: urn, allowedCharacters: delimiter)
-    guard let url =  URL(string: "\(scheme)compass/\(encodedUrn)") else {
+    guard let url =  URL(string: "compass_\(scheme)compass/\(encodedUrn)") else {
       throw RouteError.notFound
     }
 
