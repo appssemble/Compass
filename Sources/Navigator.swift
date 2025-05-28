@@ -26,7 +26,7 @@ public struct Navigator {
   ///   - payload: The optional payload if you want to send in app objects
   /// - Returns: The Location that can be used
   public static func parse(url: URL, payload: Any? = nil) -> Location? {
-    let path = String(url.absoluteString.suffix(from: scheme.endIndex))
+    let path = String(url.absoluteString.suffix(from: "compass/".endIndex))
 
     guard !(path.contains("?") || path.contains("#")) else {
       return parseComponents(url: url, payload: payload)
@@ -130,7 +130,7 @@ public extension Navigator {
   /// - Throws: RouteError if the routing fails
   public static func navigate(urn: String, payload: Any? = nil) throws {
     let encodedUrn = PercentEncoder.encode(string: urn, allowedCharacters: delimiter)
-    guard let url =  URL(string: "\(scheme)\(encodedUrn)") else {
+    guard let url =  URL(string: "\(scheme)compass/\(encodedUrn)") else {
       throw RouteError.notFound
     }
 
